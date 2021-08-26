@@ -5,10 +5,12 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from users.managers import UserManager
 
+
 class UserModel(AbstractBaseUser, PermissionsMixin):
     """
     Model to store the user information.
     """
+
     email = models.EmailField(_("Email"), unique=True, blank=False, null=False)
     first_name = models.CharField(_("First name"), max_length=30, blank=False)
     last_name = models.CharField(_("Last name"), max_length=30, blank=False)

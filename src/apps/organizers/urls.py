@@ -1,5 +1,5 @@
-from organizers import views
 from django.urls import path
+from organizers import views
 
 
 urlpatterns = [

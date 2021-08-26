@@ -1,11 +1,11 @@
 from django.db import models
 
 
-
 class OrganizerModel(models.Model):
     """
     Model to store the organizer info of a user to show it publically.
     """
+
     user = models.OneToOneField("users.UserModel", on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
@@ -15,9 +15,8 @@ class OrganizerModel(models.Model):
 
     def __str__(self):
         return self.name
-    
-    class Meta:
-        db_table = 'organizador'
-        verbose_name = 'Organizador'
-        verbose_name_plural = 'Organizadores'
 
+    class Meta:
+        db_table = "organizador"
+        verbose_name = "Organizador"
+        verbose_name_plural = "Organizadores"
