@@ -9,8 +9,8 @@ class SignupForm(forms.Form):
     Form for registering a new organizer user.
     """
 
-    nickname = forms.CharField(label="Nickname", required=True)
-    email = forms.EmailField(label="Email", required=True)
+    nickname = forms.CharField(label="Usuario", required=True)
+    email = forms.EmailField(label="Correo", required=True)
     first_name = forms.CharField(label="Nombre", required=True)
     last_name = forms.CharField(label="Apellido", required=True)
     # TODO Add password validations
