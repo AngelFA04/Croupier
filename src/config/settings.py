@@ -22,10 +22,10 @@ sys.path.append(BASE_DIR.child("apps"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO ADD Secret here
-SECRET_KEY = env("SECRET_KEY", "TESTING-SECRET")
+SECRET_KEY = env("SECRET_KEY", default="CHANGEME")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG",default= True)
 
 ALLOWED_HOSTS = []
 
