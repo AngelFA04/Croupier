@@ -8,4 +8,5 @@ urlpatterns = [
     # path("login/", views.LoginView.as_view(), name="login"),
     path("welcome", views.welcome, name="welcome"),
     # path("profiles/<organizer_id:str>", views.OrganizersView)
+    
 ]
