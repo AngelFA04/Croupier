@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_content%}
+<title>Croupier Login</title>
+{% endblock %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% endblock %}
+
+{% block 'main' %}
+    <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h2 class="display-4">Iniciar sesion</h2>
+            </div>
+    </div>
+    {% if form.errors%}
+        <p class="alert alert-danger"> Your username and password didn't match. Please try again </p>
+    {% endif%}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text", placeholder="Correo electronico", name="email">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="password", placeholder="Password", name="password">
+        </div>
+
+        <button class="btn btn-primary btn-block mt-5 " type="submit">Log in</button>
+    </form>
+    <p class="mt-4  "> ¿No tienes cuenta? Registrate <a href='{% url "signup" %}'> aqui </a> </p>
+
+{% endblock %}

@@ -1,3 +1,6 @@
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from organizers.forms import SignupForm
@@ -15,16 +18,14 @@ def signup(request):
             # process the data in form.cleaned_data as required
             # Save form date into database
             form.save()
-
-            # username = form.cleaned_data.get('username')
-            # password = form.cleaned_data.get('password')
-            # user = authenticate(username=username, password=password)
-            # login(request, user)
+            # breakpoint()
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            user = authenticate(username=email, password=password)
+            login(request, user)
 
             # redirect to a new URL:
             return HttpResponseRedirect("/organizers/welcome")
-        else:
-            print(form.errors)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = SignupForm()
@@ -32,6 +33,7 @@ def signup(request):
 
 
 # TODO Add validation to only registered users can access this page
+@login_required(login_url="/users/login")
 def welcome(request):
     """
     View to show the welcome message to only the registered users and
