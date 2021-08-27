@@ -1,8 +1,17 @@
-<form action="/organizers/signup/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+{% extends "base.html" %}
+
+{% include "navbar.html" %}
+{% block 'body' %}
+
+    <div class="container">
+        <form action="/organizers/signup/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
+
 
 {% comment %} <form action="/your-name/" method="post">
     <label for="your_name">Your name: </label>

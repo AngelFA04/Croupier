@@ -22,10 +22,27 @@ class SignupForm(forms.ModelForm):
             "first_name",
             "last_name",
             "nickname",
-            "nickname",
             "password",
             "password_validation",
         ]
+
+    def clean_nickname(self):
+        """
+        Validate that the nickname is unique
+        """
+        nickname = self.cleaned_data.get("nickname")
+        if OrganizerModel.objects.filter(nickname=nickname).exists():
+            raise forms.ValidationError("Nickname already in use")
+        return nickname
+
+    def clean_email(self):
+        """
+        Validate that the email is not already in use.
+        """
+        email = self.cleaned_data.get("email")
+        if UserModel.objects.filter(email=email).exists():
+            raise forms.ValidationError("Email already in use")
+        return email
 
     def clean(self):
         """Verify password confirmation match"""
@@ -39,9 +56,7 @@ class SignupForm(forms.ModelForm):
 
         return data
 
-    def save(
-        self,
-    ):
+    def save(self):
         self.cleaned_data.pop("password_validation")
         nickname = self.cleaned_data.pop("nickname")
         user = UserModel.objects.create_user(**self.cleaned_data)
