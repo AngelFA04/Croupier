@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-
-{% block 'body' %}
+{% block 'header' %}
 {% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          
+
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -14,27 +15,7 @@
               <div class="carousel-caption text-left">
                 <h1>Bienvenide.</h1>
                 <p>Participe en rifas únicas con premios increíbles y cree sus propios eventos con sus propias reglas. Una experencia segura y grata tanto para les creadores como para les usuarios.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">¡Regístrate! :D</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Bienvenide </h1>
-                <p> Controle desde el número de boletos hasta el registro de quiénes han comprado. Todo lo necesario para una rifa exitosa al alcance de sus manos. </p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide"> 
-            <div class="container">
-              <div class="carousel-caption text-right">
-                <h1>Participe en buenas causas y gane increíbles premios</h1>
-                <p>Explore las rifas en las que participar, en cuyas descripciones se estabece el motivo de estas y apoye causas que le importen a usted o a sus seres queridos. No desperdicie la oportunidad de ganar premios sorprendentes y de recibir notificaciones de si resulta ganador al instante.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                <p><a class="btn btn-lg btn-primary" href="{% url 'signup' %}" role="button">¡Regístrate! :D</a></p>
               </div>
             </div>
           </div>
@@ -55,13 +36,13 @@
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Organizador </h2>
             <p>Vuélvete el crupier de tu propio evento. Lleva el control de tus rifas y establece las reglas y condiciones que mejor se ajusten a tus necesidades.</p>
-            <p><a class="btn btn-secondary" href="#" role="button"> ¡Crea un nuevo evento! &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{% url 'create-raffle' %}" role="button"> ¡Crea un nuevo evento! &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
             <h2>Usuario</h2>
             <p>Participa en rifas con causas significativas y no desperdicies la oportunidad de ganar increíbles premios. </p>
-            <p><a class="btn btn-secondary" href="#" role="button"> ¡Reclama tu premio! &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{% url 'find-raffle'%}" role="button"> ¡Reclama tu premio! &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
@@ -79,12 +60,14 @@
         <div class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading">Creadores. <span class="text-muted"> ¿Quiénes somos?</span></h2>
-            <p class="lead"> 
-              Somos un grupo de tres estudiantes que sabemos la mucho que se tienden a realizar rifas con el fin de recaudar fondos para diversos objetivos. Sabemos es importante mantener la información de dichos eventos clara, transparente y bajo control, por lo que desarrollamos una aplicación que ofrece justamente eso, y de manera personalizada.
+            <p class="lead">
+              Somos un grupo de tres estudiantes que sabemos lo mucho que se tienden a realizar rifas con el fin de recaudar fondos para diversos objetivos. Sabemos es importante mantener la información de dichos eventos clara, transparente y bajo control, por lo que desarrollamos una aplicación que ofrece justamente eso, y de manera personalizada.
              </p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto"
+                 alt="Generic placeholder image"
+                 data-src="">
           </div>
         </div>
 
@@ -96,5 +79,4 @@
         <!-- /END THE FEATURETTES -->
 
       </div><!-- /.container -->
-
 {% endblock %}

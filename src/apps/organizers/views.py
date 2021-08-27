@@ -15,15 +15,29 @@ def signup(request):
             # process the data in form.cleaned_data as required
             # Save form date into database
             form.save()
+
+            # username = form.cleaned_data.get('username')
+            # password = form.cleaned_data.get('password')
+            # user = authenticate(username=username, password=password)
+            # login(request, user)
+
             # redirect to a new URL:
             return HttpResponseRedirect("/organizers/welcome")
-
+        else:
+            print(form.errors)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = SignupForm()
-
     return render(request, "organizers/signup.html", {"form": form})
 
 
+# TODO Add validation to only registered users can access this page
 def welcome(request):
-    return render(request, "organizers/welcome.html")
+    """
+    View to show the welcome message to only the registered users and
+    to give her options to continue with the registration process or
+    to start creating a raffle
+    """
+    # TODO Pass in the context if the user is already logged in
+    context = {}
+    return render(request, "organizers/welcome.html", context=context)

@@ -4,20 +4,27 @@ from organizers.models import OrganizerModel
 from users.models import UserModel
 
 
-class SignupForm(forms.ModelForm):
+class SignupForm(forms.Form):
     """
     Form for registering a new organizer user.
     """
 
-    nickname = forms.CharField()
-    email = forms.EmailField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    password_validation = forms.CharField(widget=forms.PasswordInput)
+    nickname = forms.CharField(label="Nickname", required=True)
+    email = forms.EmailField(label="Email", required=True)
+    first_name = forms.CharField(label="Nombre", required=True)
+    last_name = forms.CharField(label="Apellido", required=True)
+    # TODO Add password validations
+    password = forms.CharField(
+        widget=forms.PasswordInput, label="Contraseña", required=True
+    )
+    password_validation = forms.CharField(
+        widget=forms.PasswordInput, label="Confirmar contraseña", required=True
+    )
+    description = forms.CharField(
+        widget=forms.Textarea, label="Descripción de usuario", required=False
+    )
 
     class Meta:
-        model = UserModel
         fields = [
             "first_name",
             "last_name",
@@ -44,22 +51,30 @@ class SignupForm(forms.ModelForm):
             raise forms.ValidationError("Email already in use")
         return email
 
+    def clean_password_validation(self):
+        """
+        Validate that the password and password_validation fields match.
+        """
+        password = self.data.dict().get("password")
+        password_validation = self.data.dict().get("password_validation")
+        if password != password_validation:
+            raise forms.ValidationError("Passwords do not match")
+        return password_validation
+
     def clean(self):
         """Verify password confirmation match"""
         data = super().clean()
-
-        password = data["password"]
-        password_confirmation = data["password_validation"]
-
-        if password != password_confirmation:
-            raise forms.ValidationError("Passwords do not match")
-
+        if not data:
+            return data
         return data
 
     def save(self):
         self.cleaned_data.pop("password_validation")
         nickname = self.cleaned_data.pop("nickname")
+        description = self.cleaned_data.pop("description")
         user = UserModel.objects.create_user(**self.cleaned_data)
-        organizer = OrganizerModel(user=user, nickname=nickname)
+        organizer = OrganizerModel(
+            user=user, nickname=nickname, description=description
+        )
         organizer.save()
         return organizer

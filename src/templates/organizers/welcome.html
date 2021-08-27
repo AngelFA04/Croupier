@@ -1,1 +1,41 @@
+
 {% extends "base.html" %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block 'main' %}
+<div class="container" style="margin: 10px">
+                <h1>Menu</h1>
+                <div>
+                  <p>
+                  Ahora que estas registrado, te invitamos a que crees tu primera rifa
+                  </p>
+                </div>
+                <div class="card" style="width: 28rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Crear rifa</h5>
+                    <p class="card-text">Crear una nueva rifa para compartir con tus amigos.</p>
+                    <a href="{% url 'create-raffle' %}" class="btn btn-primary">Crear rifa</a>
+                  </div>
+                </div>
+
+                <div class="card" style="width: 28rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Tus rifas y boletos</h5>
+                    <p class="card-text">Gestiona tus rifas y boletos</p>
+                    <a href="{% url 'create-raffle' %}" class="btn btn-primary">Rifas</a>
+                  </div>
+                </div>
+
+                <div class="card" style="width: 28rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Iniciar sorteo</h5>
+                    <p class="card-text">Lanza un sorteo de tus rifas</p>
+                    <a href="{% url 'create-raffle' %}" class="btn btn-primary">Crear sorteo</a>
+                  </div>
+                </div>
+
+</div>
+
+{% endblock %}

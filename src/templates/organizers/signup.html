@@ -1,20 +1,27 @@
 {% extends "base.html" %}
 
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
 {% include "navbar.html" %}
-{% block 'body' %}
-
+{% endblock %}
+{% block 'main' %}
     <div class="container">
-        <form action="/organizers/signup/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
-        </form>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h2 class="display-4">Registro</h2>
+            </div>
+        </div>
+        <div class="container">
+           <form action="" method="post"><input type='hidden'/>
+             {%csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default " value="Registrar">
+                    Submit
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}
-
-
-{% comment %} <form action="/your-name/" method="post">
-    <label for="your_name">Your name: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-    <input type="submit" value="OK">
-</form> {% endcomment %}

@@ -9,12 +9,12 @@ class OrganizerModel(models.Model):
     user = models.OneToOneField("users.UserModel", on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    # image = models.ImageField(upload_to='organizers/', blank=True, null=True)
+    image = models.ImageField(upload_to="organizers/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.nickname
 
     class Meta:
         db_table = "organizador"
