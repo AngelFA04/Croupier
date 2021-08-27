@@ -22,10 +22,10 @@ sys.path.append(BASE_DIR.child("apps"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO ADD Secret here
-SECRET_KEY = "django-insecure-!5mi*ez@kc+m-vw$u#2t$@afl#p++_7r9-#y6+lr#p#rx!=t3*"
+SECRET_KEY = env("SECRET_KEY", default="CHANGEME")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG",default= True)
 
 ALLOWED_HOSTS = []
 
@@ -142,3 +142,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "users.UserModel"
+AUTHENTICATION_BACKENDS = ["utils.backends.EmailBackend"]
+LOGIN_REDIRECT_URL = "/organizers/welcome"
+LOGOUT_REDIRECT_URL = "/"
