@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Fechas</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for raffle in raffles %}
+    <tr>
+      <th scope="row"><a href="#{% url 'detail-raffle' raffle.id%}">{{raffle.id}} </a></th>
+      <td>{{raffle.name}}</td>
+      <td>{{raffle.description}}</td>
+      <td>{{raffle.start_date.date}} - {{raffle.end_date.date}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+{% endblock %}

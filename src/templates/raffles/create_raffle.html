@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container" style="margin: 20px">
+           <form action="" method="post"><input type='hidden'/>
+             {%csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block mt-5" value="Registrar">
+                    Crear
+                    </button>
+                </div>
+            </form>
+</div>
+
+{% endblock %}

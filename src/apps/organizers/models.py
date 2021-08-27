@@ -6,7 +6,7 @@ class OrganizerModel(models.Model):
     Model to store the organizer info of a user to show it publically.
     """
 
-    user = models.OneToOneField("users.UserModel", on_delete=models.CASCADE)
+    user = models.OneToOneField("users.UserModel", on_delete=models.CASCADE, related_name="organizer")
     nickname = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     image = models.ImageField(upload_to="organizers/", blank=True, null=True)
