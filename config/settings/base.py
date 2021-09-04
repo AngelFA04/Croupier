@@ -1,21 +1,18 @@
+import os
 import sys
 
 import environ
 from unipath import Path
 
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-# reading .env file
-environ.Env.read_env()
-
-BASE_DIR = Path(__file__).ancestor(2)
-
+BASE_DIR = Path(__file__).ancestor(3)
 # Add apps folder to path
 sys.path.append(BASE_DIR.child("apps"))
 
+
+# Enviorment configuration
+env = environ.Env(DJANGO_SECRET_KEY=(str, ""))
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,9 +22,9 @@ sys.path.append(BASE_DIR.child("apps"))
 SECRET_KEY = env("SECRET_KEY", default="CHANGEME")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG",default= True)
+DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -88,13 +85,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        # TODO Add postgres db.
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR + "db.sqlite3",
-    }
-}
+DATABASES = {"default": env.db("DATABASE_URL", default="sqlite://local.sqlite")}  # noqa
 
 
 # Password validation
@@ -102,16 +93,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",  # noqa
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",  # noqa
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",  # noqa
     },
 ]
 
@@ -134,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")  # noqa
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
