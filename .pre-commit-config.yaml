@@ -6,7 +6,7 @@ repos:
         language_version: python3
         always_run: true
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.0.1
     hooks:
       - id: trailing-whitespace
       - id: check-added-large-files
@@ -22,6 +22,11 @@ repos:
       - id: detect-private-key
       - id: fix-encoding-pragma
         args: [--remove]
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v1.0.3 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    hooks:
+      - id: pycln
+        args: [--config=config.cfg]
   - repo: https://github.com/asottile/reorder_python_imports
     rev: v2.4.0
     hooks:
@@ -36,10 +41,5 @@ repos:
     rev: 3.8.4
     hooks:
       - id: flake8
-  - repo: https://github.com/hadialqattan/pycln
-    rev: v0.0.2
-    hooks:
-      - id: pycln
-
 default_language_version:
   python: python3.8

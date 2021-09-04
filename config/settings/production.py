@@ -26,6 +26,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")  # noqa
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-DATABASES = {
-    "default":  env.db("DATABASE_URL", default="postgres://")
-}
+DATABASES = {"default": env.db("DATABASE_URL", default="postgres://")}

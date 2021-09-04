@@ -9,7 +9,12 @@ class RaffleModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
-    organizer = models.ForeignKey("organizers.OrganizerModel", verbose_name="Organizador", on_delete=models.CASCADE, related_name="raffles")
+    organizer = models.ForeignKey(
+        "organizers.OrganizerModel",
+        verbose_name="Organizador",
+        on_delete=models.CASCADE,
+        related_name="raffles",
+    )
 
     def __str__(self):
         return self.name
