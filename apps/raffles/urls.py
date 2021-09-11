@@ -14,4 +14,5 @@ urlpatterns = [
     path(
         "detail/<str:raffle_id>", views.RaffleDetailView.as_view(), name="detail-raffle"
     ),
+    path("perfil", views.RaffleProfile.as_view(), name="profile"),
 ]

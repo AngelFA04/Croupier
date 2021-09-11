@@ -39,7 +39,7 @@ class SignupForm(forms.Form):
         """
         nickname = self.cleaned_data.get("nickname")
         if OrganizerModel.objects.filter(nickname=nickname).exists():
-            raise forms.ValidationError("Nickname already in use")
+            raise forms.ValidationError("El usuario ya esta en uso")
         return nickname
 
     def clean_email(self):
@@ -48,7 +48,7 @@ class SignupForm(forms.Form):
         """
         email = self.cleaned_data.get("email")
         if UserModel.objects.filter(email=email).exists():
-            raise forms.ValidationError("Email already in use")
+            raise forms.ValidationError("El correo ya esta en uso")
         return email
 
     def clean_password_validation(self):
@@ -58,7 +58,7 @@ class SignupForm(forms.Form):
         password = self.data.dict().get("password")
         password_validation = self.data.dict().get("password_validation")
         if password != password_validation:
-            raise forms.ValidationError("Passwords do not match")
+            raise forms.ValidationError("Las contraseñas no coinciden")
         return password_validation
 
     def clean(self):

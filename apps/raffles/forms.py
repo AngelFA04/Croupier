@@ -7,8 +7,8 @@ class RaffleCreateForm(forms.ModelForm):
     """A form for creating a raffle"""
 
     organizer = forms.CharField(max_length=100, widget=HiddenInput, required=False)
-    start_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    end_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    start_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}),label="Fecha de inicio")
+    end_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}),label="Fecha de termino")
 
     class Meta:
         model = RaffleModel
@@ -16,7 +16,7 @@ class RaffleCreateForm(forms.ModelForm):
 
     def clean(self):
         if self.data["start_date"] > self.data["end_date"]:
-            raise forms.ValidationError("Start date must be before end date")
+            raise forms.ValidationError("La fecha de inicio debe ser antes de la fecha final")
         return super().clean()
 
     def save(self):

@@ -2,8 +2,8 @@ from django.db import models
 
 
 class RaffleModel(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(verbose_name="Descripcion")
+    name = models.CharField(max_length=100,verbose_name="Nombre")
+    description = models.TextField(verbose_name="Descripción")
     start_date = models.DateTimeField(verbose_name="Fecha de inicio")
     end_date = models.DateTimeField(verbose_name="Fecha de fin")
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+
+<style type="text/css">
+body{
+    background: #9b9b9b;
+}
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #9b9b9b;
+}
+.profile-edit-btn{
+    border: auto;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: -1%;
+    margin: auto;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 7%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.box{
+  padding: 0%;
+  text-align: justify;
+}
+</style>
+
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="profile-img">
+              <img src="https://blog.aulaformativa.com/wp-content/uploads/2016/08/consideraciones-mejorar-primera-experiencia-de-usuario-aplicaciones-web-perfil-usuario.jpg" alt=""/>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+          {% csrf_token %}
+              <div class="profile-head">
+                <h5>
+                  {{user.first_name}} {{user.last_name}}
+                </h5>
+                <div class="box">
+                <h6>
+                  {%if user.organizer.description%}
+                  {{user.organizer.description}}
+                  {%endif%}
+                </h6>
+              </div>
+                <p class="proile-rating">Usuario: <span>{{user.organizer.nickname}}</span></p>
+                <p class="proile-rating">Id de usuario: <span>{{user.id}}</span></p>
+                <p class="proile-rating">Correo: <span>{{user.email}}</span></p>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Rifas</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <a href="{%url 'welcome'%}" type="submit" class="btn btn-primary btn-block mt-5">Administrar rifas</a>
+            </div>
+
+    </div>
+
+
+    <div class="container">
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Fechas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for raffle in raffles %}
+        <tr>
+          <td>{{raffle.name}}</td>
+          <td>{{raffle.description}}</td>
+          <td>{{raffle.start_date.date}} - {{raffle.end_date.date}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -18,6 +18,10 @@ class OrganizerModel(models.Model):
     def __str__(self):
         return self.nickname
 
+    def getDescription(self):
+        return self.description
+
+
     class Meta:
         db_table = "organizador"
         verbose_name = "Organizador"

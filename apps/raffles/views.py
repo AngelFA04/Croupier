@@ -33,6 +33,17 @@ class RaffleDetailView(LoginRequiredMixin, TemplateView):
         return self.render_to_response(context)
 
 
+class RaffleProfile(LoginRequiredMixin, TemplateView):
+    template_name = "raffles/profile.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context["raffles"] = request.user.organizer.raffles.all()
+        '''for _ in context["general"]:
+            print(_)'''
+        return self.render_to_response(context)
+
+
 class RaffleFinishView(TemplateView):
     """
     View used to finish a raffle. And send the results to the raffle owner.

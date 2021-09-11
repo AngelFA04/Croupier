@@ -85,7 +85,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL", default="sqlite://local.sqlite")}  # noqa
+DATABASES = {"default": env.db("DATABASE_URL", default="sqlite:///local.sqlite")}  # noqa
 
 
 # Password validation
