@@ -66,7 +66,6 @@ class OrganizerPublicProfileView(DetailView):
     def get_context_data(self, **kwargs):
         organizer = self.get_object()
         context = super().get_context_data(**kwargs)
-        context["user"] = context["object"].user
         context["raffles"] = organizer.raffles.all()
 
         return context

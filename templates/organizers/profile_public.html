@@ -117,27 +117,24 @@ body{
           {% csrf_token %}
               <div class="profile-head">
                 <h5>
-                  {{user.first_name}} {{user.last_name}}
+                  {{object.user.first_name}} {{object.user.last_name}}
                 </h5>
                 <div class="box">
                 <h6>
-                  {%if user.organizer.description%}
-                  {{user.organizer.description}}
+                  {%if object.description%}
+                  {{object.description}}
                   {%endif%}
                 </h6>
               </div>
-                <p class="proile-rating">Usuario: <span>{{user.organizer.nickname}}</span></p>
-                <p class="proile-rating">Id de usuario: <span>{{user.id}}</span></p>
-                <p class="proile-rating">Correo: <span>{{user.email}}</span></p>
+                <p class="proile-rating">Usuario: <span>{{object.nickname}}</span></p>
+                {% comment %} <p class="proile-rating">Id de usuario: <span>{{user.id}}</span></p> {% endcomment %}
+                {% comment %} <p class="proile-rating">Correo: <span>{{user.email}}</span></p> {% endcomment %}
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Rifas</a>
                     </li>
                   </ul>
               </div>
-            </div>
-            <div class="col-md-2">
-              <a href="{%url 'welcome'%}" type="submit" class="btn btn-primary btn-block mt-5">Administrar rifas</a>
             </div>
 
     </div>
