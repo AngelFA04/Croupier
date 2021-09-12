@@ -1,5 +1,6 @@
 # Move
 from django import forms
+from django.contrib.auth.password_validation import validate_password
 from organizers.models import OrganizerModel
 from users.models import UserModel
 
@@ -59,6 +60,11 @@ class SignupForm(forms.Form):
         password_validation = self.data.dict().get("password_validation")
         if password != password_validation:
             raise forms.ValidationError("Las contraseñas no coinciden")
+        try:
+            validate_password(password)
+        except forms.ValidationError as error:
+            raise forms.ValidationError(error)
+
         return password_validation
 
     def clean(self):
