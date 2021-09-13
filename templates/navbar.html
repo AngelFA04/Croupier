@@ -14,19 +14,19 @@
 
           <ul class="navbar-nav ml-auto my-2 my-sm-0">
             {% comment %} Usuario sin sesion {% endcomment %}
-            {% if not user.is_authenticated %}
+            {% if user.is_authenticated == True %}
             <li class="nav-item">
-              <a class="nav-link" href="{%url 'signup'%}">Registro</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{%url 'login'%}">Iniciar sesión</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{%url 'profile'%}">{{user.first_name}}</a>
+              <a class="nav-link" href="{%url 'profile'%}">Perfil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{%url 'logout'%}">Cerrar sesión</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'signup'%}">Registrar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'login'%}">Iniciar sesión</a>
             </li>
             {% endif %}
           </ul>

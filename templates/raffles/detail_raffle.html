@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block 'main' %}
+<div class="container" style="margin: 10px">
+    <h1>Rifa {{object.name}}</h1>
+    <p>{{object.description}}</p>
+    <div class="row">
+    {% comment %} TODO Mostrar informacion actual de la rifa con detalle en un div {% endcomment %}
+    {% comment %} Informacion actual de rifa {% endcomment %}
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{rifa.nombre}}</h5>
+            <p class="card-text">Información actual de la rifa</p>
+            {% bootstrap_form form %}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        {% comment %} <div class="card" style="width: 28rem;"> {% endcomment %}
+        {% if 1 %}
+        {% endif %}
+
+        {% comment %} <div class="card" style="width: 28rem;"> {% endcomment %}
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Gestiona tus boletos</p>
+            <a href="{% url 'list-ticket' object.pk %}" class="btn btn-primary btn-block mt-3">Boletos</a>
+          </div>
+        </div>
+        {% if not object.is_public %}
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Editar la informacion de la rifa.</p>
+            <a href="{% url 'update-raffle' object.pk %}" class="btn btn-primary btn-block mt-3">Editar rifa</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Hacer publica la rifa</p>
+            <a href="{% url 'publicate-raffle' object.pk %}" class="btn btn-primary btn-block mt-3">Publicar rifa</a>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+    {% comment %} {% if 2 %} {% endcomment %}
+    {% comment %} <div class="card" style="width: 28rem;">
+      <div class="card-body">
+        <h5 class="card-title">Cancelar rifa</h5>
+        <p class="card-text">Lanza un sorteo de tus rifas</p>
+        <a href="{% url 'finish-raffle' %}" class="btn btn-primary btn-block mt-3 disabled" aria-disabled="true">Crear sorteo</a>
+      </div>
+    </div> {% endcomment %}
+
+</div>
+
+{% endblock %}

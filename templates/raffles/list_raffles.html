@@ -10,19 +10,21 @@
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col"># Detalle</th>
       <th scope="col">Nombre</th>
       <th scope="col">Descripción</th>
       <th scope="col">Fechas</th>
+      <th scope="col">Estatus</th>
     </tr>
   </thead>
   <tbody>
     {% for raffle in raffles %}
     <tr>
-      <th scope="row"><a href="#{% url 'detail-raffle' raffle.id%}">{{raffle.id}} </a></th>
+      <th scope="row"><a href="{% url 'detail-raffle' raffle.id %}">{{raffle.id}} </a></th>
       <td>{{raffle.name}}</td>
       <td>{{raffle.description}}</td>
-      <td>{{raffle.start_date.date}} - {{raffle.end_date.date}}</td>
+      <td>{{raffle.start_date}} - {{raffle.end_date}}</td>
+      <td>{{raffle.get_status_display}}</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container">
+  <br>
+  <h2>Boletos de la rifa {{raffle}}</h2>
+  <table class="table table-hover">
+
+  <thead>
+    <tr>
+      <th scope="col"># Número </th>
+      <th scope="col">Vendido</th>
+      <th scope="col">Pagado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% comment %} {{formset}} {% endcomment %}
+    {% for ticket in tickets %}
+    <tr>
+      <th scope="row">{{ticket.id}}</th>
+      <td>
+        {% if ticket.is_sold %}
+        <span class="badge badge-success">Vendido</span>
+        {% else %}
+        <span class="badge badge-danger">No vendido</span>
+        {% endif %}
+      </td>
+      </td>
+      <td>
+        {% if ticket.is_paid %}
+        <span class="badge badge-success">Pagado</span>
+        {% else %}
+        <span class="badge badge-danger">No pagado</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+{% endblock %}
