@@ -8,13 +8,15 @@ class RaffleCreateForm(forms.ModelForm):
     """A form for creating a raffle"""
 
     organizer = forms.CharField(max_length=100, widget=HiddenInput, required=False)
+
     start_date = forms.DateField(
         widget=forms.DateInput(attrs={"type": "date"}), label="Fecha de inicio"
     )
     end_date = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date"}), label="Fecha de termino"
+        widget=forms.DateInput(attrs={"type": "date"}), label="Fecha final"
     )
     max_tickets = forms.IntegerField(required=True, label="Cantidad de tickets")
+
 
     class Meta:
         model = RaffleModel
@@ -30,7 +32,7 @@ class RaffleCreateForm(forms.ModelForm):
     def clean(self):
         if self.data["start_date"] > self.data["end_date"]:
             raise forms.ValidationError(
-                "La fecha de inicio debe ser antes de la fecha final"
+                "La fecha de inicio debe ser antes de la fecha final."
             )
         return super().clean()
 
@@ -158,7 +160,7 @@ class TicketListForm(forms.ModelForm):
 class TicketBuyForm(forms.ModelForm):
 
     is_valid = forms.BooleanField(
-        label="Es valido", help_text="Marcar si el ticket es válido", required=False
+        label="Es válido", help_text="Marcar si el ticket es válido", required=False
     )
 
     class Meta:
