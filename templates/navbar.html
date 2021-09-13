@@ -13,7 +13,7 @@
           </form> {% endcomment %}
 
           <ul class="navbar-nav ml-auto my-2 my-sm-0">
-            {% comment %} Usuario sin sesion {% endcomment %}
+            {% comment %} Usuario sin sesión {% endcomment %}
             {% if not user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{%url 'signup'%}">Registrar</a>

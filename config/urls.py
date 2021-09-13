@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+from users.views import privacy_view
 
 urlpatterns = [
     path("", include("utils.urls")),
@@ -23,4 +24,5 @@ urlpatterns = [
     path("organizers/", include("organizers.urls")),
     path("raffles/", include("raffles.urls")),
     path("users/", include("users.urls")),
+    path("privacy/", privacy_view, name= "privacywarning"),
 ]

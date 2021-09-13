@@ -12,7 +12,7 @@
 {% block 'main' %}
     <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h2 class="display-4">Iniciar sesion</h2>
+                <h2 class="display-4">Iniciar sesión</h2>
             </div>
     </div>
     {% if form.errors%}
@@ -22,15 +22,15 @@
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="form-group">
-            <input class="form-control" type="text", placeholder="Correo electronico", name="email">
+            <input class="form-control" type="text", placeholder="Correo electrónico", name="email">
         </div>
 
         <div class="form-group">
             <input class="form-control" type="password", placeholder="Contraseña", name="password">
         </div>
 
-        <button class="btn btn-primary btn-block mt-5 " type="submit">Inicias sesión</button>
+        <button class="btn btn-primary btn-block mt-5 " type="submit">Iniciar sesión</button>
     </form>
-    <p class="mt-4  "> ¿No tienes cuenta? Registrate <a href='{% url "signup" %}'> aqui </a> </p>
+    <p class="mt-4  "> ¿No tienes cuenta? Regístrate <a href='{% url "signup" %}'> aquí </a> </p>
 
 {% endblock %}

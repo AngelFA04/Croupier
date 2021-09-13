@@ -9,7 +9,7 @@ class SignupForm(forms.Form):
     Form for registering a new organizer user.
     """
 
-    nickname = forms.CharField(label="Usuario", required=True)
+    nickname = forms.CharField(label="Usuario", max_length=20, help_text= "Máximo 20 caracteres", required=True)
     email = forms.EmailField(label="Correo", required=True)
     first_name = forms.CharField(label="Nombre", required=True)
     last_name = forms.CharField(label="Apellido", required=True)
@@ -21,7 +21,10 @@ class SignupForm(forms.Form):
         widget=forms.PasswordInput, label="Confirmar contraseña", required=True
     )
     description = forms.CharField(
-        widget=forms.Textarea, label="Descripción de usuario", required=False
+        widget=forms.Textarea, 
+        label="Descripción de usuario." ,
+         help_text= "Campo opcional donde se puede indicar si se trata de una organización o de un particular, lugar de residencia, entre otros datos.",
+         required=False
     )
 
     class Meta:
@@ -39,7 +42,7 @@ class SignupForm(forms.Form):
         """
         nickname = self.cleaned_data.get("nickname")
         if OrganizerModel.objects.filter(nickname=nickname).exists():
-            raise forms.ValidationError("El usuario ya esta en uso")
+            raise forms.ValidationError("El nombre de usuario ya está en uso")
         return nickname
 
     def clean_email(self):
@@ -48,7 +51,7 @@ class SignupForm(forms.Form):
         """
         email = self.cleaned_data.get("email")
         if UserModel.objects.filter(email=email).exists():
-            raise forms.ValidationError("El correo ya esta en uso")
+            raise forms.ValidationError("La dirección de correo ya está en uso")
         return email
 
     def clean_password_validation(self):
