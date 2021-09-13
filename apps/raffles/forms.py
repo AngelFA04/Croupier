@@ -51,26 +51,27 @@ class RaffleCreateForm(forms.ModelForm):
 class RaffleDetailForm(forms.ModelForm):
 
     name = forms.CharField(
-        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+        widget=forms.TextInput(attrs={"readonly": "readonly"}), label="Nombre",
         max_length=100,
         required=False,
     )
     description = forms.CharField(
-        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+        widget=forms.TextInput(attrs={"readonly": "readonly"}), label="Descripción",
         max_length=100,
         required=False,
     )
-    start_date = forms.DateField(disabled=True, required=False)
-    end_date = forms.DateField(disabled=True, required=False)
+    start_date = forms.DateField(disabled=True, required=False, label="Fecha inicio")
+    end_date = forms.DateField(disabled=True, required=False, label="Fecha final")
     is_public = forms.BooleanField(required=False, disabled=True)
     status = forms.CharField(
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
         max_length=100,
         required=False,
+        label="Estatus"
     )
-    max_tickets = forms.IntegerField(disabled=True)
-    min_tickets = forms.IntegerField(disabled=True)
-    ticket_price = forms.DecimalField(disabled=True)
+    max_tickets = forms.IntegerField(disabled=True, label="Máxima cantidad de boletos")
+    min_tickets = forms.IntegerField(disabled=True, label="Mínima cantidad de boletos")
+    ticket_price = forms.DecimalField(disabled=True, label="Precio")
 
     class Meta:
         model = RaffleModel
