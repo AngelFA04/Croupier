@@ -40,15 +40,16 @@
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="https://cdn.pixabay.com/photo/2021/08/11/16/06/mountain-6538890_960_720.jpg" alt="Generic placeholder image" width="140" height="140">
-            <h2>Usuario</h2>
-            <p>Participa en rifas con causas significativas y no desperdicies la oportunidad de ganar increíbles premios. </p>
-            <p><a class="btn btn-secondary" href="#" role="button"> ¡Reclama tu premio! &raquo;</a></p>
+            <h2>Participante</h2>
+            {% comment %} <p>Participa en rifas con causas significativas y no desperdicies la oportunidad de ganar increíbles premios. </p> {% endcomment %}
+            <p>Si participaste en una rifa y quieres saber si ganaste, consulta aquí el estado de tus boletos</p>
+            <p><a class="btn btn-secondary disabled" href="#" role="button"> ¡Revisa tus boletos! &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
             <img class="rounded-circle" src="https://cdn.pixabay.com/photo/2016/09/01/19/13/confetti-1637197_960_720.jpg" alt="Generic placeholder image" width="140" height="140">
             <h2>Descubre</h2>
             <p>Encuentra nuevas rifas disponibles y entérate de sus causas, premios y más.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">¡Explora! &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{% url 'public-list-raffles' %}" role="button">¡Explora! &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 

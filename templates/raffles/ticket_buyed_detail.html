@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block 'main' %}
+<div class="container" style="margin: 10px">
+
+    <div class="row">
+    {% comment %} TODO Mostrar informacion actual de la rifa con detalle en un div {% endcomment %}
+    {% comment %} Informacion actual de rifa {% endcomment %}
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Compra existosa</h5>
+            <p class="card-text"> {{ticket}} </p>
+            <p class="card-text">Guarda el siguiente codigo para validar la compra de tu boleto: {{code}}</p>
+            <form action="" method="post"><input type='hidden'/>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+{% endblock %}

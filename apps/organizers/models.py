@@ -21,7 +21,6 @@ class OrganizerModel(models.Model):
     def getDescription(self):
         return self.description
 
-
     class Meta:
         db_table = "organizador"
         verbose_name = "Organizador"

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container">
+    {% comment %} <div class="row">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+            <p>{{ message }}</p>
+        </div>
+    </div> {% endcomment %}
+
+
+    <form action="" method="post"><input type='hidden'/>
+             {%csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default " value="Registrar">
+                    Editar
+                    </button>
+                </div>
+            </form>
+
+
+</div>
+{% endblock %}
