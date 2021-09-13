@@ -33,6 +33,5 @@ class LoginView(auth_views.LoginView):
 
 
 def privacy_view(request):
-    """ View to show aprivacy advice.
-    """
+    """View to show aprivacy advice."""
     return render(request, "users/privacy.html")

@@ -17,7 +17,6 @@ class RaffleCreateForm(forms.ModelForm):
     )
     max_tickets = forms.IntegerField(required=True, label="Cantidad de tickets")
 
-
     class Meta:
         model = RaffleModel
         fields = [
@@ -51,12 +50,14 @@ class RaffleCreateForm(forms.ModelForm):
 class RaffleDetailForm(forms.ModelForm):
 
     name = forms.CharField(
-        widget=forms.TextInput(attrs={"readonly": "readonly"}), label="Nombre",
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+        label="Nombre",
         max_length=100,
         required=False,
     )
     description = forms.CharField(
-        widget=forms.TextInput(attrs={"readonly": "readonly"}), label="Descripción",
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+        label="Descripción",
         max_length=100,
         required=False,
     )
@@ -67,7 +68,7 @@ class RaffleDetailForm(forms.ModelForm):
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
         max_length=100,
         required=False,
-        label="Estatus"
+        label="Estatus",
     )
     max_tickets = forms.IntegerField(disabled=True, label="Máxima cantidad de boletos")
     min_tickets = forms.IntegerField(disabled=True, label="Mínima cantidad de boletos")

@@ -24,5 +24,5 @@ urlpatterns = [
     path("organizers/", include("organizers.urls")),
     path("raffles/", include("raffles.urls")),
     path("users/", include("users.urls")),
-    path("privacy/", privacy_view, name= "privacywarning"),
+    path("privacy/", privacy_view, name="privacywarning"),
 ]
