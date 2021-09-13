@@ -1,7 +1,9 @@
 import datetime
 
+import shortuuid
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.forms.widgets import NumberInput
 
 
 class RaffleStatuses(models.TextChoices):
@@ -28,7 +30,7 @@ class RaffleModel(models.Model):
     ticket_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0, verbose_name="Precio de boleto"
     )
-    # max_tickets_per_person = models.IntegerField(default=0)
+    # smax_tickets_per_person = models.IntegerField(default=1)
     status = models.CharField(
         max_length=220, default="pending", choices=RaffleStatuses.choices
     )
@@ -59,18 +61,11 @@ class RaffleModel(models.Model):
 
         if self.ticket_price <= 0:
             errors["ticket_price"] = "El precio debe ser mayor a 0"
-
         if self.max_tickets <= 0:
             errors["max_tickets"] = "El maximo de tickets debe ser mayor a 0"
 
         if errors:
             raise ValidationError(errors)
-        # return super().clean_fields(exclude)
-
-    # def clean(self) -> None:
-    #     if self.min_tickets > self.max_tickets:
-    #         raise ValidationError("El minimo de tickets no puede ser mayor al maximo")
-    #     return super().clean()
 
     class Meta:
         db_table = "raffles"
@@ -84,9 +79,10 @@ class TicketModel(models.Model):
     """
 
     # price = models.DecimalField(max_digits=6, decimal_places=2)
-    identifier = models.CharField(
-        max_length=100, verbose_name="Identificador"
-    )  # TODO Change identifier???
+    number = models.IntegerField(verbose_name="Número de boleto", default=1)
+    code = models.CharField(
+        max_length=100, verbose_name="Código de boleto", unique=True, null=True
+    )
     raffle = models.ForeignKey(
         RaffleModel, on_delete=models.CASCADE, related_name="tickets"
     )
@@ -100,7 +96,13 @@ class TicketModel(models.Model):
     # qr_code = models.ImageField(upload_to="qr_codes", blank=True, null=True) TODO Implement
 
     def __str__(self):
-        return self.raffle.name
+        return f"Boleto {self.number} de {self.raffle.name}"
+
+    def generate_code(self):
+        code = shortuuid.ShortUUID(
+            alphabet="0123456789abcdefghijklmnopqrstuvwxyz"
+        ).random(length=8)
+        return code
 
     class Meta:
         db_table = "tickets"

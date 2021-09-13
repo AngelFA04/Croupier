@@ -37,7 +37,7 @@
             <h5 class="card-title">{{raffle.name}}</h5>
             <p class="card-text">{{raffle.description}}</p>
             <p class="card-text">{{raffle.start_date}} - {{raffle.end_date}}</p>
-            <a href="#" class="card-link">Comprar boleto</a>
+            <a href="{%url 'buy-ticket' raffle.id%}" class="card-link">Comprar boleto</a>
         </div>
     </div>
     {% endfor %}

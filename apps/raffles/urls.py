@@ -26,4 +26,20 @@ urlpatterns = [
         name="publicate-raffle",
     ),
     path("detail/<str:pk>/tickets", views.TicketListView.as_view(), name="list-ticket"),
+    path(
+        "detail/<str:pk>/tickets/edit",
+        views.TicketEditView.as_view(),
+        name="edit-ticket",
+    ),
+    path(
+        "detail/<str:pk>/tickets/buying",
+        views.TicketBuyView.as_view(),
+        name="buy-ticket",
+    ),
+    path(
+        "detail/<str:raffle_pk>/tickets/<str:pk>/buying",
+        views.TicketBuyDetailView.as_view(),
+        name="buy-ticket-detail",
+    ),
+    path("tickets/<str:pk>", views.ticket_buyed_detail, name="success-buyed-ticket"),
 ]

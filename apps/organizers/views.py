@@ -22,7 +22,6 @@ def signup(request):
             # process the data in form.cleaned_data as required
             # Save form date into database
             form.save()
-            # breakpoint()
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(username=email, password=password)

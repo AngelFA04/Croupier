@@ -12,7 +12,7 @@ class RaffleAdmin(admin.ModelAdmin):
 
 @admin.register(models.TicketModel)
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ("identifier", "raffle", "is_sold", "is_active")
+    list_display = ("raffle", "is_sold", "is_active")
     list_filter = (
         "is_sold",
         "is_active",

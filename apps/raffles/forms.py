@@ -14,10 +14,18 @@ class RaffleCreateForm(forms.ModelForm):
     end_date = forms.DateField(
         widget=forms.DateInput(attrs={"type": "date"}), label="Fecha de termino"
     )
+    max_tickets = forms.IntegerField(required=True, label="Cantidad de tickets")
 
     class Meta:
         model = RaffleModel
-        fields = ["name", "description", "start_date", "end_date", "ticket_price"]
+        fields = [
+            "name",
+            "description",
+            "start_date",
+            "end_date",
+            "ticket_price",
+            "max_tickets",
+        ]
 
     def clean(self):
         if self.data["start_date"] > self.data["end_date"]:
@@ -28,7 +36,14 @@ class RaffleCreateForm(forms.ModelForm):
 
     def save(self):
         self.instance.organizer = self.initial["organizer"]
-        return super().save()
+        super().save()
+        # Generate tickets
+        for i in range(1, self.instance.max_tickets + 1):
+            TicketModel.objects.create(
+                number=i,
+                raffle=self.instance,
+            )
+        return self.instance
 
 
 class RaffleDetailForm(forms.ModelForm):
@@ -138,3 +153,25 @@ class TicketListForm(forms.ModelForm):
     class Meta:
         model = TicketModel
         fields = ["id", "is_sold", "is_paid"]
+
+
+class TicketBuyForm(forms.ModelForm):
+
+    is_valid = forms.BooleanField(
+        label="Es valido", help_text="Marcar si el ticket es válido", required=False
+    )
+
+    class Meta:
+        model = TicketModel
+        fields = ["id"]
+
+    def clean(self):
+        if not self.cleaned_data["is_valid"]:
+            raise forms.ValidationError("Debe marcar el ticket como válido")
+        return super().clean()
+
+    def save(self):
+        self.instance.is_sold = True
+        self.instance.code = self.instance.generate_code()
+        self.instance.save()
+        return self.instance

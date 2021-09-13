@@ -9,6 +9,10 @@
 <div class="container">
   <br>
   <h2>Boletos de la rifa {{raffle}}</h2>
+
+  <p><a class="btn btn-lg btn-primary" href="{% url 'edit-ticket' raffle.id %}" role="button">Editar estados de boletos</a></p>
+
+
   <table class="table table-hover">
 
   <thead>
