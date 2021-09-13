@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container">
+
+    {% comment %} <table class="table">
+    <thead>
+        <tr>
+            <th scope="col"># Detalle</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fechas</th>
+            <th scope="col">Estatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for raffle in raffles %}
+        <tr>
+        <th scope="row"><a href="{% url 'detail-raffle' raffle.id %}">{{raffle.id}} </a></th>
+        <td>{{raffle.name}}</td>
+        <td>{{raffle.description}}</td>
+        <td>{{raffle.start_date}} - {{raffle.end_date}}</td>
+        <td>{{raffle.get_status_display}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table> {% endcomment %}
+    <br>
+    {% for raffle in raffles %}
+    <div class="card" style="width: 18rem; margin: 9px">
+        <div class="card-body">
+            <h5 class="card-title">{{raffle.name}}</h5>
+            <p class="card-text">{{raffle.description}}</p>
+            <p class="card-text">{{raffle.start_date}} - {{raffle.end_date}}</p>
+            <a href="{%url 'buy-ticket' raffle.id%}" class="card-link">Comprar boleto</a>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+{% endblock %}

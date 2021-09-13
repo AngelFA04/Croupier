@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block 'main' %}
+<div class="container" style="margin: 10px">
+    <h1>Rifa {{raffle.name}}</h1>
+    <p>{{raffle.description}}</p>
+    <div class="row">
+    {% comment %} TODO Mostrar informacion actual de la rifa con detalle en un div {% endcomment %}
+    {% comment %} Informacion actual de rifa {% endcomment %}
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Compra de boleto</h5>
+            <p class="card-text">Compraras un boleto para la rifa {{raffle.name}} organizada por {{raffle.organizer}}</p>
+            <p class="card-text">Costo de boleto: ${{raffle.ticket_price}}</p>
+            <form action="" method="post"><input type='hidden'/>
+             {%csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default " value="Registrar">
+                      Comprar
+                    </button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+{% endblock %}

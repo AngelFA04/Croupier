@@ -22,7 +22,6 @@ def signup(request):
             # process the data in form.cleaned_data as required
             # Save form date into database
             form.save()
-            # breakpoint()
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(username=email, password=password)
@@ -66,7 +65,6 @@ class OrganizerPublicProfileView(DetailView):
     def get_context_data(self, **kwargs):
         organizer = self.get_object()
         context = super().get_context_data(**kwargs)
-        context["user"] = context["object"].user
         context["raffles"] = organizer.raffles.all()
 
         return context

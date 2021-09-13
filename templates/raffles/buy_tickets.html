@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
+<div class="container">
+  <br>
+  <h2>Boletos de la rifa de {{raffle}}</h2>
+
+  <p> {{raffle.description}} </p>
+  <p> Fechas inicio: {{raffle.start_date}}</p>
+  <p> Fechas final: {{raffle.end_date}} </p>
+
+  <p> Elige los boletos que quieres comprar </p>
+  <table class="table table-hover">
+
+  <thead>
+    <tr>
+      <th scope="col"># Número </th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% comment %} {{formset}} {% endcomment %}
+    {% for ticket in tickets %}
+    <tr>
+
+      <th scope="row">{{ticket.number}}</th>
+      </td>
+      <td>
+        {% if ticket.is_sold %}
+        <span class="badge badge-danger">No disponible</span>
+        {% else %}
+        <span class="badge badge-success"> <a href="{% url 'buy-ticket-detail' raffle.id ticket.id %}">Disponible</a> </span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+{% endblock %}
