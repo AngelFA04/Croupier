@@ -147,6 +147,7 @@ body{
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
           <th scope="col">Fechas</th>
+          <!-- <<th scope="col">Comprar boletos</th> -->
         </tr>
       </thead>
       <tbody>
@@ -155,6 +156,9 @@ body{
           <td>{{raffle.name}}</td>
           <td>{{raffle.description}}</td>
           <td>{{raffle.start_date.date}} - {{raffle.end_date.date}}</td>
+          <td>
+            <button type="button" class="btn btn-success">Comprar</button>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
