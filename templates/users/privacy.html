@@ -1,33 +1,67 @@
-AVISO DE PRIVACIDAD
-Croupier
+{% extends "base.html" %}
 
-Juan Pérez Rodríguez, con domicilio en calle Angelito núm. 111, col. Prados Verdes, Mich., México, C.P. 11133, es el responsable del uso y protección de sus datos personales, y al respecto le informa lo siguiente:
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block 'header' %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block 'main' %}
 
-Los datos personales que recabamos de usted, los utilizaremos para las siguientes finalidades que son necesarias para el servicio que solicita:
-Inscripción de usuario en plataforma.
-Verificar su identidad.
+<style type="text/css">
+body{
+    background: #9b9b9b;
+}
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
 
-Por el momento, no contamos con finalidades innecesarias para el servicio solicitado, por lo que no hay riesgo en que sus datos personales sean usados para fines adicionales.
+</style>
 
-Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales: nombre completo y correo electrónico.
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+          <h2 lign="center">AVISO DE PRIVACIDAD</h2>
+          <h6><i>Croupier</i></h5>
 
-Para las finalidades informadas en el presente aviso de privacidad no utilizaremos ningún dato personal adicional considerado como sensible.
+  <p align = "justify">Juan Pérez Rodríguez, con domicilio en calle Angelito núm. 111, col. Prados Verdes, Mich., México, C.P. 11133, es el responsable del uso y protección de sus datos personales, y al respecto le informa lo siguiente:</p>
 
- En caso de solicitar más información en futuras actualizaciones, se le notificará al usuario qué información será recabada, si serán compartidos dentro y fuera del país con otras empresas u organizaciones distintas a, así como las cláusulas para obtener su consentimiento.
+  <p align = "justify">Los datos personales que recabamos de usted, los utilizaremos para las siguientes finalidades que son necesarias para el servicio que solicita:
+  Inscripción de usuario en plataforma.</p>
+  <p align = "justify">Verificar su identidad.</p>
 
-Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
-Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a nuestro correo electrónico empresarial: crupier_services@business.com
+  <p align = "justify">Por el momento, no contamos con finalidades innecesarias para el servicio solicitado, por lo que no hay riesgo en que sus datos personales sean usados para fines adicionales.</p>
 
-Usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales. Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, ya que es posible que por alguna obligación legal requiramos seguir tratando sus datos personales. Asimismo, usted deberá considerar que para ciertos fines, la revocación de su consentimiento implicará que no le podamos seguir prestando el servicio que nos solicitó, o la conclusión de su relación con nosotros.
+  <p align = "justify">Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales: nombre completo y correo electrónico.</p>
 
-Para conocer el procedimiento y requisitos para la revocación del consentimiento, usted podrá llamar al siguiente número telefónico 4432581770.
+  <p align = "justify">Para las finalidades informadas en el presente aviso de privacidad no utilizaremos ningún dato personal adicional considerado como sensible.</p>
 
-Con objeto de que usted pueda limitar el uso y divulgación de su información personal, le ofrecemos los siguientes medios:
+  <p align = "justify">En caso de solicitar más información en futuras actualizaciones, se le notificará al usuario qué información será recabada, si serán compartidos dentro y fuera del país con otras empresas u organizaciones distintas a, así como las cláusulas para obtener su consentimiento.</p>
 
-Su inscripción en el Registro Público para Evitar Publicidad, que está a cargo de la Procuraduría Federal del Consumidor, con la finalidad de que sus datos personales no sean utilizados para recibir publicidad o promociones de empresas de bienes o servicios. Para mayor información sobre este registro, usted puede consultar el portal de Internet de la PROFECO, o bien ponerse en contacto directo con ésta.
+  <p align = "justify">Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
+  Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a nuestro correo electrónico empresarial: crupier_services@business.com </p>
 
-Le informamos que en nuestra página de Internet no utilizamos cookies, web beacons ni otras tecnologías a través de las cuales es posible monitorear su comportamiento como usuario de Internet.
+  <p align = "justify">Usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales. Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, ya que es posible que por alguna obligación legal requiramos seguir tratando sus datos personales. Asimismo, usted deberá considerar que para ciertos fines, la revocación de su consentimiento implicará que no le podamos seguir prestando el servicio que nos solicitó, o la conclusión de su relación con nosotros.</p>
 
-El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los productos o servicios que ofrecemos; de nuestras prácticas de privacidad; de cambios en nuestro modelo de negocio, o por otras causas.
+  <p align = "justify">Para conocer el procedimiento y requisitos para la revocación del consentimiento, usted podrá llamar al siguiente número telefónico 4432581770.</p>
 
-Nos comprometemos a mantenerlo informado sobre los cambios que pueda sufrir el presente aviso de privacidad, a través de correos electrónicos y notificaciones dentro de la misma aplicación.
+  <p align = "justify">Con objeto de que usted pueda limitar el uso y divulgación de su información personal, le ofrecemos los siguientes medios:</p>
+
+  <p align = "justify">Su inscripción en el Registro Público para Evitar Publicidad, que está a cargo de la Procuraduría Federal del Consumidor, con la finalidad de que sus datos personales no sean utilizados para recibir publicidad o promociones de empresas de bienes o servicios. Para mayor información sobre este registro, usted puede consultar el portal de Internet de la PROFECO, o bien ponerse en contacto directo con ésta.</p>
+
+  <p align = "justify">Le informamos que en nuestra página de Internet no utilizamos cookies, web beacons ni otras tecnologías a través de las cuales es posible monitorear su comportamiento como usuario de Internet.</p>
+
+  <p align = "justify">El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los productos o servicios que ofrecemos; de nuestras prácticas de privacidad; de cambios en nuestro modelo de negocio, o por otras causas.</p>
+
+  <p align = "justify">Nos comprometemos a mantenerlo informado sobre los cambios que pueda sufrir el presente aviso de privacidad, a través de correos electrónicos y notificaciones dentro de la misma aplicación.</p>
+
+
+
+    </div>
+  </form>
+</div>
+
+{% endblock %}
