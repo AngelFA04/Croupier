@@ -37,13 +37,13 @@
         {% if not object.is_public %}
         <div class="card">
           <div class="card-body">
-            <p class="card-text">Editar la informacion de la rifa.</p>
+            <p class="card-text">Editar la información de la rifa</p>
             <a href="{% url 'update-raffle' object.pk %}" class="btn btn-primary btn-block mt-3">Editar rifa</a>
           </div>
         </div>
         <div class="card">
           <div class="card-body">
-            <p class="card-text">Hacer publica la rifa</p>
+            <p class="card-text">Hacer pública la rifa</p>
             <a href="{% url 'publicate-raffle' object.pk %}" class="btn btn-primary btn-block mt-3">Publicar rifa</a>
           </div>
         </div>

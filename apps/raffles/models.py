@@ -49,7 +49,7 @@ class RaffleModel(models.Model):
     def clean_fields(self, exclude=None):
         errors = {}
         if self.min_tickets > self.max_tickets:
-            errors["min_tickets"] = "El minimo de tickets no puede ser mayor al maximo"
+            errors["min_tickets"] = "El mínimo de tickets no puede ser mayor al máximo"
 
         start_date = self.start_date
         if start_date < datetime.date.today():
@@ -62,7 +62,7 @@ class RaffleModel(models.Model):
         if self.ticket_price <= 0:
             errors["ticket_price"] = "El precio debe ser mayor a 0"
         if self.max_tickets <= 0:
-            errors["max_tickets"] = "El maximo de tickets debe ser mayor a 0"
+            errors["max_tickets"] = "El máximo de tickets debe ser mayor a 0"
 
         if errors:
             raise ValidationError(errors)
@@ -89,7 +89,7 @@ class TicketModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)  # TODO DELETE??
-    is_sold = models.BooleanField(default=False, verbose_name="Vendidor")
+    is_sold = models.BooleanField(default=False, verbose_name="Vendido")
     is_winner = models.BooleanField(default=False, verbose_name="Ganador")
     is_paid = models.BooleanField(default=False, verbose_name="Pagado")
     comments = models.TextField(blank=True, null=True)
